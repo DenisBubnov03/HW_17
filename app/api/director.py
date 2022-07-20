@@ -14,7 +14,7 @@ directors_schema = DirectorSchema(many=True)
 class DirectorView(Resource):
     def get(self):
         director = Director.query.all()
-        return directors_schema.dump(director), 200
+        return director_schema.dump(director), 200
 
     def post(self):
         req_json = request.json
@@ -29,7 +29,7 @@ class DirectorView(Resource):
     def get(self, pk):
         try:
             note = Director.query.get(pk)
-            return directors_schema.dump(note), 200
+            return director_schema.dump(note), 200
         except Exception as e:
             return str(e), 404
 
